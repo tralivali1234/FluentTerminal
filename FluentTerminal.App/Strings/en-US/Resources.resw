@@ -148,11 +148,13 @@ Fuzzy</comment>
   </data>
   <data name="Color.Text" xml:space="preserve">
     <value>Color</value>
-    <comment>TabBar.xaml</comment>
+    <comment>TabBar.xaml
+Fuzzy</comment>
   </data>
   <data name="ColorInactiveTabs.Text" xml:space="preserve">
     <value>Color on inactive tabs</value>
-    <comment>GeneralSettings.xaml</comment>
+    <comment>GeneralSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="Command.Copy" xml:space="preserve">
     <value>Copy</value>
@@ -161,15 +163,18 @@ Fuzzy</comment>
   </data>
   <data name="CustomTitle.Header" xml:space="preserve">
     <value>Show custom tab title also in titlebar</value>
-    <comment>GeneralSettings.xaml</comment>
+    <comment>GeneralSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="EditTitle.Text" xml:space="preserve">
     <value>Edit Title</value>
-    <comment>TabBar.xaml</comment>
+    <comment>TabBar.xaml
+Fuzzy</comment>
   </data>
   <data name="General.Text" xml:space="preserve">
     <value>General</value>
-    <comment>GeneralSettings.xaml</comment>
+    <comment>GeneralSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="TabTheme.Green" xml:space="preserve">
     <value>Green</value>
@@ -182,7 +187,8 @@ Fuzzy</comment>
   </data>
   <data name="NeedRelaunch.Text" xml:space="preserve">
     <value>Relaunch required to apply setting</value>
-    <comment>GeneralSettings.xaml</comment>
+    <comment>GeneralSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="NewTab.Text" xml:space="preserve">
     <value>New tab</value>
@@ -199,7 +205,8 @@ Fuzzy</comment>
   </data>
   <data name="ONTA_Windows.Content" xml:space="preserve">
     <value>Windows</value>
-    <comment>GeneralSettings.xaml</comment>
+    <comment>GeneralSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="OpenNewTerminalAs.Text" xml:space="preserve">
     <value>Open new terminals as</value>
@@ -235,7 +242,8 @@ Fuzzy</comment>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>Settings</value>
-    <comment>SettingsPage.xaml.cs</comment>
+    <comment>SettingsPage.xaml.cs
+Fuzzy</comment>
   </data>
   <data name="Settings.Text" xml:space="preserve">
     <value>Settings</value>
@@ -398,15 +406,18 @@ Fuzzy</comment>
   </data>
   <data name="FontSize.Header" xml:space="preserve">
     <value>Font size</value>
-    <comment>TerminalSettings.xaml</comment>
+    <comment>TerminalSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="ImportTheme.Text" xml:space="preserve">
     <value>Import</value>
-    <comment>ThemeSettings.xaml</comment>
+    <comment>ThemeSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="KeyboardShortcut.Header" xml:space="preserve">
     <value>Keyboard shortcut</value>
-    <comment>ShellProfileSettings.xaml</comment>
+    <comment>ShellProfileSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="KeyboardShortcut1.Text" xml:space="preserve">
     <value>Keyboard shortcut</value>
@@ -430,7 +441,8 @@ Fuzzy</comment>
   </data>
   <data name="MiddleButtonAction.Text" xml:space="preserve">
     <value>Middle button action</value>
-    <comment>MouseSettings.xaml</comment>
+    <comment>MouseSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="Mouse.Text" xml:space="preserve">
     <value>Mouse</value>
@@ -455,7 +467,8 @@ Fuzzy</comment>
   </data>
   <data name="Padding.Header" xml:space="preserve">
     <value>Padding</value>
-    <comment>TerminalSettings.xaml</comment>
+    <comment>TerminalSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="ProfileName.Header" xml:space="preserve">
     <value>Name</value>
@@ -467,7 +480,8 @@ Fuzzy</comment>
   </data>
   <data name="ProfileTheme.Header" xml:space="preserve">
     <value>Theme</value>
-    <comment>ShellProfileSettings.xaml</comment>
+    <comment>ShellProfileSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="ReleaseNotes.Text" xml:space="preserve">
     <value>Release notes</value>
@@ -483,7 +497,8 @@ Fuzzy</comment>
   </data>
   <data name="ScrollbackLimit.Header" xml:space="preserve">
     <value>Scrollback limit</value>
-    <comment>TerminalSettings.xaml</comment>
+    <comment>TerminalSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="ScrollBarAuto.Content" xml:space="preserve">
     <value>Auto hiding</value>
@@ -495,7 +510,8 @@ Fuzzy</comment>
   </data>
   <data name="ScrollbarStyle.Text" xml:space="preserve">
     <value>Scrollbar style</value>
-    <comment>TerminalSettings.xaml</comment>
+    <comment>TerminalSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="ScrollBarVisible.Content" xml:space="preserve">
     <value>Visible</value>
@@ -550,7 +566,8 @@ Fuzzy</comment>
   </data>
   <data name="WorkingDir.Header" xml:space="preserve">
     <value>Working directory</value>
-    <comment>ShellProfileSettings.xaml</comment>
+    <comment>ShellProfileSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="ConfirmCloseTab" xml:space="preserve">
     <value>Are you sure you want to close &quot;{0}&quot; tab?</value>
@@ -559,51 +576,63 @@ Fuzzy</comment>
   </data>
   <data name="ConfirmCloseWindow" xml:space="preserve">
     <value>Are you sure you want to close this window?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmDeleteKeybindings" xml:space="preserve">
     <value>Are you sure you want to delete this keybinding?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmDeleteTheme" xml:space="preserve">
     <value>Are you sure you want to delete this theme?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmDiscardChanges" xml:space="preserve">
     <value>Are you sure you want to discard all changes?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmRestoreGeneralSettings" xml:space="preserve">
     <value>Are you sure you want to restore the general settings?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmRestoreKeybindings" xml:space="preserve">
     <value>Are you sure you want to restore the default keybindings?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmRestoreMouseSettings" xml:space="preserve">
     <value>Are you sure you want to restore the mouse settings?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmRestoreProfile" xml:space="preserve">
     <value>Are you sure you want to restore this profile?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ConfirmRestoreTerminalOptions" xml:space="preserve">
     <value>Are you sure you want to restore the default terminal options?</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="DisabledByPolicy" xml:space="preserve">
     <value>Disabled by policy.</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="DisabledByUser" xml:space="preserve">
     <value>Disabled by user. Please reactivate it in the Startup tab of the Task Manager.</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="EditTitleString" xml:space="preserve">
     <value>Edit Title</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
@@ -611,11 +640,13 @@ Fuzzy</comment>
   </data>
   <data name="ErrorString1" xml:space="preserve">
     <value>The operation cannot be completed due to the following error:</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="ImportThemeFailed" xml:space="preserve">
     <value>Import theme failed</value>
-    <comment>ViewModel</comment>
+    <comment>ViewModel
+Fuzzy</comment>
   </data>
   <data name="NoSuitableParserFound" xml:space="preserve">
     <value>No suitable parser found</value>
@@ -630,9 +661,11 @@ Fuzzy</comment>
   </data>
   <data name="KeybindingDialogTitle.Text" xml:space="preserve">
     <value>Enter your keybinding now</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="OK" xml:space="preserve">
     <value>OK</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="ResetBtn.Content" xml:space="preserve">
     <value>Reset</value>
@@ -663,7 +696,8 @@ Fuzzy</comment>
   </data>
   <data name="Keybindings.Text" xml:space="preserve">
     <value>Keybindings</value>
-    <comment>KeyBindingSettings.xaml</comment>
+    <comment>KeyBindingSettings.xaml
+Fuzzy</comment>
   </data>
   <data name="Delete.Content" xml:space="preserve">
     <value>Delete</value>
@@ -789,6 +823,7 @@ Fuzzy</comment>
   </data>
   <data name="PortTextBox.PlaceholderText" xml:space="preserve">
     <value>port</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="IdentityFileTextBox.PlaceholderText" xml:space="preserve">
     <value>Identity file path</value>
@@ -802,6 +837,7 @@ Fuzzy</comment>
   </data>
   <data name="AdvancedExpander.Header" xml:space="preserve">
     <value>Advanced</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="MoshPorts.Text" xml:space="preserve">
     <value>Mosh ports:</value>
@@ -857,15 +893,18 @@ Fuzzy</comment>
   </data>
   <data name="NewOutput.ToolTipService.ToolTip" xml:space="preserve">
     <value>New output</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="ExitedWithError.ToolTipService.ToolTip" xml:space="preserve">
     <value>Exited with error</value>
   </data>
   <data name="ConfirmDeleteProfile" xml:space="preserve">
     <value>Are you sure you want to delete this profile?</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="Command.NewSshWindow" xml:space="preserve">
     <value>New SSH window</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="Setting_SShProfiles.Content" xml:space="preserve">
     <value>SSH Profiles</value>
@@ -902,9 +941,11 @@ Fuzzy</comment>
   </data>
   <data name="SettingsImported" xml:space="preserve">
     <value>Settings were imported from file</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="SshConnectionInfoValidationResult.IdentityFileDoesNotExist" xml:space="preserve">
     <value>Identify file does not exist</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="AutoFallbackToWindowsUsername.Header" xml:space="preserve">
     <value>Use Windows username when opening SSH URLs that don&apos;t specify one</value>
@@ -923,6 +964,7 @@ Fuzzy</comment>
   </data>
   <data name="LocationCantBeEmpty" xml:space="preserve">
     <value>Location cannot be empty.</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="MuteTerminalBeeps.Header" xml:space="preserve">
     <value>Mute terminal beeps</value>
@@ -932,6 +974,7 @@ Fuzzy</comment>
   </data>
   <data name="CommandLine.Header" xml:space="preserve">
     <value>Command</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="UnsupportedCommand" xml:space="preserve">
     <value>Unsupported command:</value>
@@ -948,6 +991,7 @@ Fuzzy</comment>
   </data>
   <data name="Command.NewCustomCommandWindow" xml:space="preserve">
     <value>New quick launch window</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="NewQuickTab.Text" xml:space="preserve">
     <value>New quick tab</value>
@@ -960,6 +1004,7 @@ Fuzzy</comment>
   </data>
   <data name="DropTabHere" xml:space="preserve">
     <value>Drop tab here</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="CloseLeft.Text" xml:space="preserve">
     <value>Close tabs to the left</value>
@@ -978,15 +1023,19 @@ Fuzzy</comment>
   </data>
   <data name="DuplicateEnvironmentVariable" xml:space="preserve">
     <value>Cannot define two environment variables with the same name.</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="EmptyEnvironmentVariableName" xml:space="preserve">
     <value>Cannot define an environment variable without a name.</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="EnvironmentVariables.Text" xml:space="preserve">
     <value>Environment variables</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="CloseSearchPanel.ToolTipService.ToolTip" xml:space="preserve">
     <value>Close search panel</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="FindNext.ToolTipService.ToolTip" xml:space="preserve">
     <value>Find next</value>
@@ -996,9 +1045,11 @@ Fuzzy</comment>
   </data>
   <data name="SearchTextBox.PlaceholderText" xml:space="preserve">
     <value>Enter search term</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="Search.Text" xml:space="preserve">
     <value>Search</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="PrintableOutputOnly.Content" xml:space="preserve">
     <value>Printable output only</value>
@@ -1006,6 +1057,7 @@ Fuzzy</comment>
   </data>
   <data name="EnableLogging.Header" xml:space="preserve">
     <value>Log output for debugging</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="WordSeparator.Header" xml:space="preserve">
     <value>Word separator characters</value>
@@ -1116,5 +1168,17 @@ Fuzzy</comment>
   </data>
   <data name="SessionDisconnected.Text" xml:space="preserve">
     <value>Session disconnected.</value>
+  </data>
+  <data name="Command.IncreaseFontSize" xml:space="preserve">
+    <value>Increase font size</value>
+  </data>
+  <data name="Command.DecreaseFontSize" xml:space="preserve">
+    <value>Decrease font size</value>
+  </data>
+  <data name="Command.ResetFontSize" xml:space="preserve">
+    <value>Reset font size</value>
+  </data>
+  <data name="Command.ReconnectTab" xml:space="preserve">
+    <value>Reconnect tab</value>
   </data>
 </root>

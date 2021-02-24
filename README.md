@@ -12,6 +12,9 @@
 
 A Terminal Emulator based on UWP and web technologies.
 
+
+<a href='//www.microsoft.com/store/apps/9p2krlmfxf9t?cid=storebadge&ocid=badge'><img src='store-badge.png' alt='Get it from Microsoft' width="284px" height="104px" /></a>
+
 ## Features
 
 - Terminal for PowerShell, CMD, WSL or custom shells
@@ -25,6 +28,7 @@ A Terminal Emulator based on UWP and web technologies.
 - Search function
 - Configure shell profiles to quickly switch between different shells
 - Explorer context menu integration (Installation script can be found [here](https://github.com/felixse/FluentTerminal/tree/master/Explorer%20Context%20Menu%20Integration))
+- VsCode Extension ([here](https://marketplace.visualstudio.com/items?itemName=Xherdi.fluent-terminal))
 
 ## Screenshots
 
@@ -35,6 +39,7 @@ A Terminal Emulator based on UWP and web technologies.
 - Arabic
 - Arabic (Iraq)
 - Azerbaijani
+- Bosnian
 - Chinese (Simplified)
 - Chinese (Traditional)
 - Dutch
@@ -61,6 +66,9 @@ Sign up to [POEditor](https://poeditor.com/join/project/TfKNIt826z) to help with
 
 ### Prerequisite
 - You need to update to Fall Creators Update or later.
+
+### Microsoft Store
+- Search for Fluent Terminal in the Microsoft Store App or click [here](https://www.microsoft.com/store/apps/9p2krlmfxf9t)
 
 ### Chocolatey package manager installation
 

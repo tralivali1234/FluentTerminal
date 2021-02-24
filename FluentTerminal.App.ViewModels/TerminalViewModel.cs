@@ -18,6 +18,7 @@ using FluentTerminal.App.ViewModels.Menu;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace FluentTerminal.App.ViewModels
 {
@@ -46,6 +47,7 @@ namespace FluentTerminal.App.ViewModels
             public string XtermBufferState { get; set; }
             public byte TerminalId { get; set; }
             public ShellProfile ShellProfile { get; set; }
+            public int FontSize { get; set; }
         }
 
         public async Task<string> SerializeAsync()
@@ -64,7 +66,8 @@ namespace FluentTerminal.App.ViewModels
                 SearchWithRegex = SearchWithRegex,
                 XtermBufferState = await SerializeXtermStateAsync().ConfigureAwait(false),
                 TerminalId = Terminal.Id,
-                ShellProfile = ShellProfile
+                ShellProfile = ShellProfile,
+                FontSize = FontSize
             };
 
             return JsonConvert.SerializeObject(state);
@@ -88,7 +91,7 @@ namespace FluentTerminal.App.ViewModels
                 XtermBufferState = state.XtermBufferState;
                 _terminalId = state.TerminalId;
                 ShellProfile = state.ShellProfile;
-
+                FontSize = state.FontSize;
                 TabTheme.IsSelected = true;
             }
         }
@@ -117,6 +120,7 @@ namespace FluentTerminal.App.ViewModels
         private MenuViewModel _contextMenu;
         private MenuViewModel _tabContextMenu;
         private readonly TabThemeViewModel _transparentTabThemeViewModel;
+        private int _fontSize;
 
         public TerminalViewModel(ISettingsService settingsService, ITrayProcessCommunicationService trayProcessCommunicationService, IDialogService dialogService,
             IKeyboardCommandService keyboardCommandService, ApplicationSettings applicationSettings, ShellProfile shellProfile,
@@ -157,6 +161,8 @@ namespace FluentTerminal.App.ViewModels
             PasteCommand = new AsyncCommand(Paste);
             CopyLinkCommand = new AsyncCommand(() => CopyTextAsync(HoveredUri), () => !string.IsNullOrWhiteSpace(HoveredUri));
             ShowSearchPanelCommand = new RelayCommand(() => ShowSearchPanel = true, () => !ShowSearchPanel);
+
+            FontSize = _terminalOptions.FontSize;
 
             if (!string.IsNullOrEmpty(terminalState))
             {
@@ -216,6 +222,7 @@ namespace FluentTerminal.App.ViewModels
         public event EventHandler CloseRightTabsRequested;
         public event EventHandler CloseOtherTabsRequested;
         public event EventHandler DuplicateTabRequested;
+        public event EventHandler<int> FontSizeChanged;
 
         public ApplicationSettings ApplicationSettings { get; private set; }
 
@@ -275,12 +282,14 @@ namespace FluentTerminal.App.ViewModels
                 {
                     if (IsSelected)
                     {
-                        _keyboardCommandService.RegisterCommandHandler(nameof(Command.Search), () => ShowSearchPanel = !ShowSearchPanel);
+                        _keyboardCommandService.RegisterCommandHandler(nameof(Command.Search), () => ShowSearchPanel = true);
+                        _keyboardCommandService.RegisterCommandHandler(nameof(Command.CloseSearch), () => CloseSearchPanel());
                         HasNewOutput = false;
                     }
                     else
                     {
                         _keyboardCommandService.DeregisterCommandHandler(nameof(Command.Search));
+                        _keyboardCommandService.DeregisterCommandHandler(nameof(Command.CloseSearch));
                     }
                     RaisePropertyChanged(nameof(IsUnderlined));
                     RaisePropertyChanged(nameof(BackgroundTabTheme));
@@ -380,6 +389,8 @@ namespace FluentTerminal.App.ViewModels
             set => Set(ref _showSearchPanel, value);
         }
 
+        public bool SearchHasFocus { get; set; }
+
         public TabThemeViewModel TabTheme
         {
             get => _tabTheme;
@@ -388,6 +399,9 @@ namespace FluentTerminal.App.ViewModels
                 Set(ref _tabTheme, value);
                 RaisePropertyChanged(nameof(IsUnderlined));
                 RaisePropertyChanged(nameof(BackgroundTabTheme));
+
+                // necessary to update this constantly so that duplicated tabs will also carry over the color
+                ShellProfile.TabThemeId = value.Theme.Id;
             }
         }
 
@@ -432,6 +446,7 @@ namespace FluentTerminal.App.ViewModels
                 }
 
                 Set(ref _tabTitle, title);
+                ShellProfile.Name = title;
             }
         }
 
@@ -444,6 +459,15 @@ namespace FluentTerminal.App.ViewModels
                 {
                     TabTitle = value;
                 }
+            }
+        }
+
+        public int FontSize
+        {
+            get => _fontSize;
+            set
+            {
+                _fontSize = value > 0 ? value : 1;
             }
         }
 
@@ -655,12 +679,39 @@ namespace FluentTerminal.App.ViewModels
                     {
                         await ApplicationView.ExecuteOnUiThreadAsync(() =>
                         {
-                            ShowSearchPanel = !ShowSearchPanel;
-                            if (ShowSearchPanel)
-                            {
-                                SearchStarted?.Invoke(this, EventArgs.Empty);
-                            }
+                            ShowSearchPanel = true;
+                            SearchStarted?.Invoke(this, EventArgs.Empty);
                         }).ConfigureAwait(false);
+                        return;
+                    }
+                case nameof(Command.CloseSearch):
+                    {
+                        await ApplicationView.ExecuteOnUiThreadAsync(() =>
+                        {
+                            CloseSearchPanel();
+                        }).ConfigureAwait(false);
+                        return;
+                    }
+                case nameof(Command.IncreaseFontSize):
+                    {
+                        FontSize++;
+                        FontSizeChanged?.Invoke(this, FontSize);
+                        return;
+                    }
+                case nameof(Command.DecreaseFontSize):
+                    {
+                        if (FontSize > 2)
+                        {
+                            FontSize--;
+                            FontSizeChanged?.Invoke(this, FontSize);
+                        }
+
+                        return;
+                    }
+                case nameof(Command.ResetFontSize):
+                    {
+                        FontSize = _terminalOptions.FontSize;
+                        FontSizeChanged?.Invoke(this, FontSize);
                         return;
                     }
                 default:
@@ -720,10 +771,15 @@ namespace FluentTerminal.App.ViewModels
 
         private async Task Paste()
         {
-            var content = await ClipboardService.GetTextAsync().ConfigureAwait(false);
-            if (content != null)
+            // prevent from pasting something into the terminal window when the actual command is executed
+            // while being in the search box
+            if (!SearchHasFocus)
             {
-                TerminalView.Paste(content);
+                var content = await ClipboardService.GetTextAsync().ConfigureAwait(false);
+                if (content != null)
+                {
+                    TerminalView.Paste(content);
+                }
             }
         }
 

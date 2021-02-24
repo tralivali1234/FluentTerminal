@@ -283,6 +283,16 @@ namespace FluentTerminal.App.Services.Implementation
                     }
                 };
 
+                case Command.CloseSearch:
+                    return new List<KeyBinding>
+                {
+                    new KeyBinding
+                    {
+                        Command = nameof(Command.CloseSearch),
+                        Key = (int)ExtendedVirtualKey.Escape
+                    }
+                };
+
                 case Command.ToggleFullScreen:
                     return new List<KeyBinding>
                 {
@@ -322,7 +332,36 @@ namespace FluentTerminal.App.Services.Implementation
                         Key = (int)ExtendedVirtualKey.L
                     }
                 };
-
+                case Command.IncreaseFontSize:
+                    return new List<KeyBinding>
+                    {
+                        new KeyBinding
+                        {
+                            Command = nameof(Command.IncreaseFontSize),
+                            Ctrl = true,
+                            Key = (int)ExtendedVirtualKey.Plus
+                        }
+                    };
+                case Command.DecreaseFontSize:
+                    return new List<KeyBinding>
+                    {
+                        new KeyBinding
+                        {
+                            Command = nameof(Command.DecreaseFontSize),
+                            Ctrl = true,
+                            Key = (int)ExtendedVirtualKey.Minus
+                        }
+                    };
+                case Command.ResetFontSize:
+                    return new List<KeyBinding>
+                    {
+                        new KeyBinding
+                        {
+                            Command = nameof(Command.ResetFontSize),
+                            Ctrl = true,
+                            Key = (int)ExtendedVirtualKey.Number0
+                        }
+                    };
                 default:
                     throw new InvalidOperationException($"Default keybindings for Command '{command}' are missing");
             }

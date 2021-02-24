@@ -118,6 +118,7 @@ namespace FluentTerminal.App.Views
 
         public event EventHandler<object> OnOutput;
         public event EventHandler<string> OnPaste;
+        public event EventHandler<string> OnSessionRestart;
 
         public XtermTerminalView()
         {
@@ -179,6 +180,16 @@ namespace FluentTerminal.App.Views
             return ExecuteScriptAsync($"changeTheme('{serialized}')");
         }
 
+        public Task ChangeFontSize(int fontSize)
+        {
+            if (_terminalClosed)
+            {
+                return Task.CompletedTask;
+            }
+
+            return ExecuteScriptAsync($"setFontSize({fontSize})");
+        }
+
         public Task<string> SerializeXtermStateAsync()
         {
             if (_terminalClosed)
@@ -225,10 +236,23 @@ namespace FluentTerminal.App.Views
             return Task.CompletedTask;
         }
 
+        private const string OpenSSH = "OpenSSH";
+
         public async Task ReconnectAsync()
         {
-            // Fill full screen with new output to not allow erasing of available output on start of new shell
-            Terminal_OutputReceived(this, System.Text.Encoding.UTF8.GetBytes(new String('\n', _requestedSize.Rows + 1)));
+            if (ViewModel.ShellProfile.Location.Contains(OpenSSH))
+            {
+                OnSessionRestart?.Invoke(this, OpenSSH);
+
+                await Task.Delay(500).ConfigureAwait(false);
+
+                Terminal_OutputReceived(this, System.Text.Encoding.UTF8.GetBytes("\n\x1b[2EReconnecting current session...\n\x1b[E"));
+            }
+            else
+            {
+                // Fill full screen with new output to not allow erasing of available output on start of new shell
+                Terminal_OutputReceived(this, System.Text.Encoding.UTF8.GetBytes(new String('\n', _requestedSize.Rows + 1)));
+            }
 
             if (true == await StartShellProcessAsync(_requestedSize).ConfigureAwait(false))
             {

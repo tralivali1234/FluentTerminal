@@ -28,6 +28,7 @@ namespace FluentTerminal.App.Views
             ViewModel.ThemeChanged += OnThemeChanged;
             ViewModel.FindNextRequested += OnFindNextRequested;
             ViewModel.FindPreviousRequested += OnFindPreviousRequested;
+            ViewModel.FontSizeChanged += OnFontSizeChanged;
             InitializeComponent();
             _terminalView = new XtermTerminalView();
             TerminalContainer.Children.Add((UIElement)_terminalView);
@@ -54,6 +55,7 @@ namespace FluentTerminal.App.Views
             ViewModel.ThemeChanged -= OnThemeChanged;
             ViewModel.FindNextRequested -= OnFindNextRequested;
             ViewModel.FindPreviousRequested -= OnFindPreviousRequested;
+            ViewModel.FontSizeChanged -= OnFontSizeChanged;
 
             ViewModel = null;
         }
@@ -88,15 +90,12 @@ namespace FluentTerminal.App.Views
         private void OnSearchStarted(object sender, EventArgs e)
         {
             SearchTextBox.Focus(FocusState.Programmatic);
+            SearchTextBox.SelectAll();
         }
 
         private void OnSearchTextBoxKeyUp(object sender, Windows.UI.Xaml.Input.KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Escape)
-            {
-                ViewModel.CloseSearchPanelCommand.Execute(null);
-            }
-            else if (e.Key == VirtualKey.Enter)
+            if (e.Key == VirtualKey.Enter)
             {
                 ViewModel.FindPreviousCommand.Execute(null);
             }
@@ -107,10 +106,14 @@ namespace FluentTerminal.App.Views
             await _terminalView.ChangeThemeAsync(e);
             SetGridBackgroundTheme(e);
         }
-               
+
+        private async void OnFontSizeChanged(object sender, int e)
+        {
+            await _terminalView.ChangeFontSize(e);
+        }
+
         private void SetGridBackgroundTheme(TerminalTheme terminalTheme)
         {
-            var color = terminalTheme.Colors.Background;
             var imageFile = terminalTheme.BackgroundImage;
 
             Brush backgroundBrush;
@@ -131,6 +134,18 @@ namespace FluentTerminal.App.Views
             }
 
             TerminalContainer.Background = backgroundBrush;
+        }
+
+        private void SearchTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel != null)
+                ViewModel.SearchHasFocus = true;
+        }
+
+        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel != null)
+                ViewModel.SearchHasFocus = false;
         }
     }
 }

@@ -18,6 +18,7 @@
         Paste,
         PasteWithoutNewlines,
         Search,
+        CloseSearch,
         ToggleFullScreen,
         SelectAll,
         Clear,
@@ -31,6 +32,9 @@
         SwitchToTerm8,
         SwitchToTerm9,
         DuplicateTab,
-        ReconnectTab
+        ReconnectTab,
+        IncreaseFontSize,
+        DecreaseFontSize,
+        ResetFontSize
     }
 }

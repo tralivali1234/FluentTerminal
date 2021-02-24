@@ -71,10 +71,16 @@ namespace FluentTerminal.App.ViewModels
             _keyboardCommandService.RegisterCommandHandler(nameof(Command.DuplicateTab), async () => await AddTabAsync(SelectedTerminal.ShellProfile.Clone()));
             _keyboardCommandService.RegisterCommandHandler(nameof(Command.ReconnectTab), async () => { if (SelectedTerminal.ReconnectTabCommand.CanExecute()) await SelectedTerminal.ReconnectTabAsync(); });
 
+            // empty command handlers for copy and paste so that the main window does not execute these when copy keyboard shortcut is used in a popup search panel 
+            // in such a case an exception would be thrown if no handlers are available so these empty ones mitigate that. Also there is no need for these on the main window anyway
+            // so leaving them empty is fine.
+            _keyboardCommandService.RegisterCommandHandler(nameof(Command.Paste), () => { });
+            _keyboardCommandService.RegisterCommandHandler(nameof(Command.Copy), () => { });
+
             // Add all of the commands for switching to a tab of a given ID, if there's one open there
             for (int i = 0; i < 9; i++)
             {
-                var switchCmd = Command.SwitchToTerm1 + i;
+                var switchCmd = Command.SwitchToTerm1 + i; 
                 int tabNumber = i;
                 // ReSharper disable once InconsistentNaming
                 void handler() => SelectTabNumber(tabNumber);
@@ -170,11 +176,15 @@ namespace FluentTerminal.App.ViewModels
             _keyboardCommandService.DeregisterCommandHandler(message.ProfileId.ToString());
 
             UpdateDefaultShellProfile();
+
+            ApplicationView.ExecuteOnUiThreadAsync(CreateMenuViewModel, CoreDispatcherPriority.Low, true);
         }
 
         private void OnShellProfileChanged(ShellProfileChangedMessage message)
         {
             UpdateDefaultShellProfile();
+
+            ApplicationView.ExecuteOnUiThreadAsync(CreateMenuViewModel, CoreDispatcherPriority.Low, true);
         }
 
         private void OnShellProfileAdded(ShellProfileAddedMessage message)
@@ -183,6 +193,8 @@ namespace FluentTerminal.App.ViewModels
                 async () => await AddProfileByGuidAsync(message.ShellProfile.Id));
 
             UpdateDefaultShellProfile();
+
+            ApplicationView.ExecuteOnUiThreadAsync(CreateMenuViewModel, CoreDispatcherPriority.Low, true);
         }
 
         private void OnDefaultShellProfileChanged(DefaultShellProfileChangedMessage message)
@@ -770,6 +782,13 @@ namespace FluentTerminal.App.ViewModels
             }
 
             items.Add(quickLaunchItem);
+
+            items.Add(new SeparatorMenuItemViewModel());
+
+            foreach (var profile in _settingsService.GetShellProfiles().Concat(_settingsService.GetSshProfiles()).OrderBy(x => x.Name))
+            {
+                items.Add(new MenuItemViewModel(profile.Name, new AsyncCommand(() => AddProfileAsync(profile, location))));
+            }
         }
 
         private ObservableCollection<MenuItemViewModel> GetRecentMenuItems() =>
